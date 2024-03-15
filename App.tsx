@@ -1,118 +1,66 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
+  ToastAndroid,
+  TouchableOpacity,
   View,
+  useColorScheme,
 } from 'react-native';
+import React from 'react';
+import HomeHeader from './src/components/HomeHeader';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
+const App = (): React.JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
+  // Define a prop named "message"
+  const message = 'Hello from ParentComponent';
+
+  // Display toast message based on the detected color scheme
+  if (isDarkMode) {
+    // Dark mode is enabled
+    ToastAndroid.show('Dark mode is enabled', ToastAndroid.SHORT);
+    // Implement dark mode styles or behavior
+  } else {
+    // Light mode is enabled or no preference specified
+    ToastAndroid.show('Light mode is enabled', ToastAndroid.SHORT);
+    // Implement light mode styles or behavior
+  }
+  // backgroundColor: isDarkMode ? '#000000' : '#ffffff';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View
+      style={{flex: 1}}
+      className="bg-light-background dark:bg-dark-background">
+      <SafeAreaView>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={isDarkMode ? '#000000' : '#ffffff'}
+        />
+        <ScrollView
+          contentContainerStyle={{
+            padding: 15,
+          }}>
+          <HomeHeader message={message} />
+          <Text
+            // style={{color: isDarkMode ? '#ffffff' : '#000000'}}
+            className="text-light-textPrimary dark:text-dark-textPrimary">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
+            voluptatem itaque, repellat, eaque distinctio adipisci beatae eum
+            aperiam vitae maiores aliquid non quisquam ab similique quasi optio
+          </Text>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            className="bg-light-primary p-3 rounded-md my-4 w-1/2 dark:bg-dark-primary">
+            <Text>Show Data</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
 
 export default App;
+
+const styles = StyleSheet.create({});
