@@ -2,8 +2,8 @@ export default {
     Home:"Home",
     Profile:"Profile",
     Search:"Search",
-    BY_CLICKING_LOGIN:"BY clicking login In you agree with our Terms.",
-    LEARN_HOW_WE_PROCESS:"Learn how we process your  data in our privacy Policy",
+    BY_CLICKING_LOGIN:"BY clicking login In you agree with our ",
+    LEARN_HOW_WE_PROCESS:"Learn how we process your  data in our ",
     Privacy_Policy:"Policy",
     Terms:"Terms",
     Login_With_Phone_Number:"Login With phone Number",
@@ -26,7 +26,11 @@ export default {
     User_Name:"Username",
     MobileNumber:"Mobile Number",
     Password:"Password",
-    Forgot_Password:"Forgot Password"
+    Forgot_Password:"Forgot Password",
+    Chose_Language:"Chose Language",
+    Arabic:"Arabic",
+    English:"English",
+    Urdu:"Urdu"
          
 
 }

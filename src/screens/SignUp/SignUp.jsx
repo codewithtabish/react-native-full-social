@@ -36,6 +36,7 @@ const SignUp = () => {
           </Text>
           <View className="">
             <TextInputComponent
+            
               value={userName}
               placeholder={strings.Email}
               onChangeText={value => setuserName(value)}

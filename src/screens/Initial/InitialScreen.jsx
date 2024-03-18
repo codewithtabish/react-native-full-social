@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import store from '../../redux/store';
 import {saveUserData} from '../../redux/reducers/auth';
 import {logout} from '../../redux/actions/authAction';
@@ -9,11 +9,19 @@ import imagePath from '../../constonts/imagePath';
 import strings from '../../constonts/lang';
 import CustomButton from '../../components/CustomButton';
 import Colors from '../../constonts/Colors';
-import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
+import { height, moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import navigationString from '../../navigations/navigationString';
 import TextComp from '../../components/TextComponent';
+import ModalComponent from '../../components/ModalComponent';
+import { useSelector } from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { changeLanguageMethod } from '../../redux/actions/settingAction';
+import languages from '../../constonts/languages';
+import LanguageSelector from '../../components/LanguageSelector';
 
 const InitialScreen = ({navigation}) => {
+  const [isVisible, setisVisible] = useState(false)
+  const {isDark,lang}=useSelector((state)=>state?.appSettingSlice)
   const handleLogin = () => {
     store.dispatch(saveUserData({isLogin: true}));
   };
@@ -26,34 +34,78 @@ const InitialScreen = ({navigation}) => {
     }
 
   }
+  const handleModal=()=>{
+    setisVisible(!isVisible)
+  }
+
+  const pressLang=(selectedLanguage)=>{
+    changeLanguageMethod(selectedLanguage)
+    setisVisible(!isVisible)
+  
+    
+  }
 
 
   return (
     <WrapperContainer >
+      <TouchableOpacity
+      onPress={handleModal}
+      className='w-10 self-end h-10 rounded-full mt-3 bg-light-primary flex-row justify-center items-center mx-4'>
+        {/* <Text className='text-white'>{lang}</Text> */}
+        <TextComp text={lang}
+        style={{color:"white",fontSize:15}}/>
+      </TouchableOpacity>
       <View className="items-center mx-5  justify-end " style={{flex:.3}}>
         <Image source={imagePath.appLogo}
         style={{...styles.imageStyle}} className="" />
 
         <TextComp
-        myClass={'text-red-900 text-3xl'}
-        // className={'text-3xl text-red-300 max-w-[60%]'}
         text= {strings.BY_CLICKING_LOGIN}
           // className='text-gray-500 text-center max-w-[85%] '
           style={{
             marginVertical:moderateScaleVertical(1),
-            // fontFamily: fontFamily.bold,
-            fontSize:textScale(15),
-            marginVertical:moderateScaleVertical(4),
+            fontFamily: fontFamily.bold,
+            fontSize:textScale(16),
+            // fontWeight:"bold",
             textAlign:"center",
-            lineHeight:moderateScaleVertical(24)
+            maxWidth:"85%",
+            lineHeight:moderateScaleVertical(25)
 
-          }}>
+          }}
+          >
          
 
             
-           <TextComp  onPress={()=>privacyPolicy(1)} text={strings.Terms}/> 
-          <TextComp text={strings.LEARN_HOW_WE_PROCESS}/> 
-          <TextComp text={strings.Privacy_Policy}/> 
+           <TextComp  onPress={()=>privacyPolicy(1)} text={strings.Terms}
+           style={{color:Colors.light.primary,
+            fontFamily: fontFamily.bold,
+            fontSize:textScale(16),
+            fontWeight:"bold",
+            textAlign:"center",
+            }}
+            /> 
+          <TextComp text={strings.LEARN_HOW_WE_PROCESS}
+             style={{
+            marginVertical:moderateScaleVertical(1),
+            fontFamily: fontFamily.bold,
+            fontSize:textScale(16),
+            // fontWeight:"bold",
+            textAlign:"center",
+            lineHeight:moderateScaleVertical(25)
+
+          }}
+          /> 
+          <TextComp text={strings.Privacy_Policy}
+             style={{
+            marginVertical:moderateScaleVertical(1),
+            fontFamily: fontFamily.bold,
+            fontSize:textScale(16),
+            fontWeight:"bold",
+            textAlign:"center",
+            lineHeight:moderateScaleVertical(25),
+            color:Colors.light.primary
+
+          }}/> 
           {/* <TextComp onPress={()=>privacyPolicy(1)  /> */}
 
         </TextComp>
@@ -103,6 +155,67 @@ const InitialScreen = ({navigation}) => {
         </View>
        
         </View>
+        <ModalComponent
+        onBackdropPress={()=>setisVisible(!isVisible)}
+        isVisible={isVisible}
+        style={{justifyContent:"flex-end",margin:0,
+        position:"absolute",
+        left:"15%",right:"15%",top:"5%",height:moderateScale(210)}}>
+          <View 
+          className='h-full rounded-2xl px-4 py-5 '
+          style={{backgroundColor:"rgba(0,0,0,.7)"}}>
+            <TextComp text={strings.Chose_Language}
+            style={{fontSize:textScale(20),
+              color:"white",
+            fontWeight:"bold"}}/>
+
+            {
+              languages.map((item,index)=>{
+                return (
+                  <LanguageSelector key={index} item={item}
+                  pressLang={pressLang}
+                  />
+                )
+              })
+            }
+
+{/* 
+            <TouchableOpacity
+             onPress={()=>pressLang(strings.Arabic)}
+                className='flex justify-between items-center my-2 flex-row py-2'>
+
+
+            <TextComp text={strings.Arabic}
+            style={{fontSize:textScale(17),marginVertical:moderateScaleVertical(0),
+              color:"white"}}/>
+              {lang==='ar' &&   <Icon name="checkmark" size={30} color={Colors.light.primary} className='mb-2' />}
+
+
+            
+              </TouchableOpacity>
+            <TouchableOpacity
+             onPress={()=>pressLang(strings.Urdu)}
+                className='flex justify-between items-center my-2 flex-row'>
+
+
+            <TextComp text={strings.Urdu}
+            style={{fontSize:textScale(17),marginVertical:moderateScaleVertical(0),
+              color:"white"}}/>
+
+              {lang==='ur' &&   <Icon name="checkmark" size={30} color={Colors.light.primary} className='mb-2' />}
+
+            
+              </TouchableOpacity> */}
+
+
+           
+
+        
+
+         
+          </View>
+
+          </ModalComponent>
 
     </WrapperContainer>
   );
