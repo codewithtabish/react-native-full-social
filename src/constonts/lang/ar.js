@@ -1,0 +1,32 @@
+export default {
+    Home:"Home",
+    Profile:"Profile",
+    Search:"Search",
+    BY_CLICKING_LOGIN:"BY clicking login In you agree with our Terms.",
+    LEARN_HOW_WE_PROCESS:"Learn how we process your  data in our privacy Policy",
+    Privacy_Policy:"Policy",
+    Terms:"Terms",
+    Login_With_Phone_Number:"Login With phone Number",
+    OR:"Or",
+    Login_With_Google:"login With Google",
+    Login_With_Facebook:"login With Facebook",
+    Login_With_Apple:"login With Apple",
+    New_Here:"New Here ?",
+    Sign_Up:"Sign Up",
+    Welcome_Back:"Welcome Back",
+    We_Are_Happy:"We are Happy to see.You can login to continue",
+    Email:"Email",
+    Password:"Password",
+    Use_OTP:"Use OTP",
+    SHOW:"Show",
+    HIDE:"Hide",
+    Login:"Login",
+    Create_An_Account:"Create an Account",
+    Create_An_Account_So_You_Can_Continue:"Create an account so you can continue",
+    User_Name:"Username",
+    MobileNumber:"Mobile Number",
+    Password:"Password",
+    Forgot_Password:"Forgot Password"
+         
+
+}

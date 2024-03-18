@@ -1,0 +1,25 @@
+export default {
+  InitialScreen: 'InitialScreen',
+  login: 'Login',
+  signup: 'Signup',
+  profile: 'Profile',
+  search: 'Search',
+  createPost: 'CreatePost',
+  home: 'Home',
+  notification: 'Notification',
+  stacks: {
+    homeStack: 'HomeStack',
+    searchStack: 'SearchStack',
+    profileStack: 'ProfileStack',
+    notificationStack: 'NotificationStack',
+    postStack: 'PostStack',
+  },
+  tabs: {
+    homeTab: 'HomeTab',
+    searchTab: 'SearchTab',
+    profileTab: 'ProfileTab',
+    notificationTab: 'NotificationTab',
+    postTab: 'PostTab',
+  },
+  tabsRoutes: 'MainTabs',
+};

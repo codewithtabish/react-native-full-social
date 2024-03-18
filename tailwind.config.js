@@ -12,13 +12,13 @@ module.exports = {
       colors: {
         dark: {
           // Background
-          background: '#272727',
+          background: '#242124',
           surface: '#2C2C2C',
           // Text
           textPrimary: '#FFFFFF',
           textSecondary: '#AFAFAF',
           // Accents
-          primary: '#3478F6',
+          primary: '#2A9D8F',
           secondary: '#FFBA08',
           success: '#5CB85C',
           error: '#D9534F',
@@ -32,7 +32,7 @@ module.exports = {
           textPrimary: '#333333',
           textSecondary: '#666666',
           // Accents
-          primary: '#3478F6',
+          primary: '#2A9D8F',
           secondary: '#FFBA08',
           success: '#5CB85C',
           error: '#D9534F',
